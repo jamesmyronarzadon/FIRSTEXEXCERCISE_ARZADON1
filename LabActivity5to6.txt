@@ -1,0 +1,336 @@
+Code for Constant Time
+namespace Constant_time
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 10, 20, 30, 40, 50 };
+            int answer = numbers[2];
+
+            lblResult1.Text = "Result: " + answer;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int a = 10;
+            int b = 20;
+            int sum = a + b;
+
+            lblResult2.Text = "Result: " + sum;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string[] fruits = { "Apple", "Banana", "Mango" };
+            string fruit = fruits[0];
+
+            lblResult3.Text = "Result: " + fruit;
+        }
+    }
+}
+
+
+Code for Linear Time
+namespace Linear_time
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 10, 20, 30, 40, 50 };
+
+            string result = "";
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                result += numbers[i] + "\n";
+            }
+
+            lblResult1.Text = ("Result: " + result);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string[] names = { "Ana", "Ben", "Carlo", "David" };
+
+            string result = "Not Found!";
+
+            foreach (string name in names)
+            {
+                if (name == "Carlo")
+                {
+                    result = "Found!";
+                }
+            }
+
+            lblResult2.Text = ("Result: " + result);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 5, 10, 15 };
+            int total = 0;
+
+            foreach (int number in numbers)
+            {
+                total = total + number;
+            }
+
+            lblResult3.Text = total.ToString();
+        }
+    }
+}
+
+Code for Logarithmic Time
+namespace Logarithmic_time
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 10, 20, 30, 40, 50, 60, 70 };
+
+            int left = 0;
+            int right = numbers.Length - 1;
+
+            string result = "Not Found";
+
+            while (left <= right)
+            {
+                int middle = (left + right) / 2;
+
+                if (numbers[middle] == 50)
+                {
+                    result = "Found!";
+                    break;
+                }
+                else if (numbers[middle] < 50)
+                {
+                    left = middle + 1;
+                }
+                else
+                {
+                    right = middle - 1;
+                }
+            }
+
+            lblResult1.Text = result;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int n = 16;
+            string result = "";
+
+            while (n > 1)
+            {
+                n = n / 2;
+                result += n;
+            }
+
+            lblResult2.Text = result;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int low = 1;
+            int high = 100;
+            string result = "";
+
+            while (low <= high)
+            {
+                int middle = (low + high) / 2;
+
+                result += middle;
+
+                high = middle - 1;
+            }
+
+            lblResult3.Text = result;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+
+Code for Quadratic Time
+namespace Quadratic_time
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 1, 2, 3, 4, 5 };
+            string result = "";
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                for (int j = 0; j < numbers.Length; j++)
+                {
+                    result += numbers[i] + " " + numbers[j]
+                        + Environment.NewLine;
+                }
+            }
+
+            lblResult1.Text = result;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 1, 2, 3 };
+
+            string result = "";
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                for (int j = 0; j < numbers.Length; j++)
+                {
+                    result += numbers[i] + " x " + numbers[j]
+                        + " = " + (numbers[i] * numbers[j])
+                        + Environment.NewLine;
+                }
+            }
+
+            lblResult2.Text = result;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string[] students = { "Ana", "Ben", "Carlo" };
+
+            string result = "";
+
+            for (int i = 0; i < students.Length; i++)
+            {
+                for (int j = 0; j < students.Length; j++)
+                {
+                    result += students[i] + " checks "
+                        + students[j] + Environment.NewLine;
+                }
+            }
+
+            lblResult3.Text = result;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+
+Code for Exponential Time
+namespace Exponential_time
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int n = 3;
+            int combinations = 1;
+
+            for (int i = 0; i < n; i++)
+            {
+                combinations = combinations * 2;
+            }
+
+            lblResult1.Text = "Number of combinations: "
+                + combinations;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int tosses = 5;
+            int possibilities = 1;
+
+            for (int i = 0; i < tosses; i++)
+            {
+                possibilities *= 2;
+            }
+
+            lblResult2.Text = "Possible results: "
+                + possibilities;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string result = "";
+
+            void Choose(int n, string combination)
+            {
+                if (n == 0)
+                {
+                    result += combination + Environment.NewLine;
+                    return;
+                }
+
+                Choose(n - 1, combination + "A");
+                Choose(n - 1, combination + "B");
+            }
+
+            Choose(3, "");
+
+            lblResult3.Text = result;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+
+
+
