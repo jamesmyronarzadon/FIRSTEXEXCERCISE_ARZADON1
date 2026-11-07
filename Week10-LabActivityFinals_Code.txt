@@ -1,0 +1,699 @@
+Console codes
+Library Book Management System
+using System;
+using System.Collections.Generic;
+
+class LibraryManager
+{
+    private List<string> books = new List<string>();
+    public void AddBook(string book)
+    {
+        books.Add(book);
+    }
+    public void BorrowBook(string book)
+    {
+        if (books.Contains(book))
+        {
+            books.Remove(book);
+            Console.WriteLine(book + " borrowed successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Book not available.");
+        }
+    }
+    public void ReturnBook(string book)
+    {
+        books.Add(book);
+        Console.WriteLine(book + " returned successfully.");
+    }
+    public void DisplayBooks()
+    {
+        foreach (string book in books)
+        {
+            Console.WriteLine(book);
+        }
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        LibraryManager library = new LibraryManager();
+
+        library.AddBook("Harry Potter");
+        library.AddBook("The Little Prince");
+        library.AddBook("Atomic Habits");
+
+        library.BorrowBook("Harry Potter");
+
+        library.ReturnBook("Harry Potter");
+
+        Console.WriteLine(" Available Books:");
+        library.DisplayBooks();
+    }
+}
+
+
+Shopping Cart System
+using System;
+using System.Collections;
+
+class ShoppingCart
+{   
+    private ArrayList products = new ArrayList();
+    public void AddProduct(string product)
+    {
+        products.Add(product);
+    }
+    public void RemoveProduct(string product)
+    {
+        if (products.Contains(product))
+        {
+            products.Remove(product);
+            Console.WriteLine(product + " removed.");
+        }
+        else
+        {
+            Console.WriteLine("Product not found.");
+        }
+    }
+    public void DisplayCart()
+    {
+        foreach (string product in products)
+        {
+            Console.WriteLine(product);
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        ShoppingCart cart = new ShoppingCart();
+
+        cart.AddProduct("Laptop");
+        cart.AddProduct("Mouse");
+        cart.AddProduct("Keyboard");
+
+        cart.RemoveProduct("Mouse");
+
+        Console.WriteLine("\nShopping Cart:");
+        cart.DisplayCart();
+    }
+}
+
+
+Patient Waiting List System
+using System;
+class Node
+{
+    public string Data;
+    public Node Next;
+
+    public Node(string data)
+    {
+        Data = data;
+        Next = null;
+    }
+}
+
+class PatientWaitingList
+{
+    private Node head;
+    private Node tail;
+    public void AddPatient(string patient)
+    {
+        Node newNode = new Node(patient);
+
+        if (head == null)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            tail.Next = newNode;
+            tail = newNode;
+        }
+    }
+    public void DisplayPatients()
+    {
+        Node current = head;
+
+        while (current != null)
+        {
+            Console.Write(current.Data + " -> ");
+            current = current.Next;
+        }
+
+        Console.WriteLine("null");
+    }
+    public void SearchPatient(string patient)
+    {
+        Node current = head;
+
+        while (current != null)
+        {
+            if (current.Data == patient)
+            {
+                Console.WriteLine("Patient found!");
+                return;
+            }
+
+            current = current.Next;
+        }
+
+        Console.WriteLine("Patient not found.");
+    }
+    public void RemoveFirstPatient()
+    {
+        if (head != null)
+        {
+            Console.WriteLine("Served: " + head.Data);
+
+            head = head.Next;
+
+            if (head == null)
+            {
+                tail = null;
+            }
+        }
+        else
+        {
+            Console.WriteLine("No patients waiting.");
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        PatientWaitingList patients = new PatientWaitingList();
+
+        patients.AddPatient("Patient 101");
+        patients.AddPatient("Patient 102");
+        patients.AddPatient("Patient 103");
+
+        Console.WriteLine("Waiting List:");
+        patients.DisplayPatients();
+
+        patients.SearchPatient("Patient 102");
+
+        patients.RemoveFirstPatient();
+
+        Console.WriteLine("\nUpdated Waiting List:");
+        patients.DisplayPatients();
+    }
+}
+
+Delivery Route Management
+using System;
+class Node
+{
+    public string Data;
+    public Node Next;
+
+    public Node(string data)
+    {
+        Data = data;
+        Next = null;
+    }
+}
+class DeliveryRoute
+{
+    private Node head;
+
+    public DeliveryRoute()
+    {
+        head = new Node("Warehouse");
+    }
+    public void AddLocation(string location)
+    {
+        Node newNode = new Node(location);
+
+        Node current = head;
+
+        while (current.Next != null)
+        {
+            current = current.Next;
+        }
+
+        current.Next = newNode;
+    }
+    public void RemoveLocation(string location)
+    {
+        Node current = head;
+
+        while (current.Next != null)
+        {
+            if (current.Next.Data == location)
+            {
+                current.Next = current.Next.Next;
+                Console.WriteLine("Delivery removed.");
+                return;
+            }
+
+            current = current.Next;
+        }
+
+        Console.WriteLine("Location not found.");
+    }
+    public void DisplayRoute()
+    {
+        Node current = head;
+
+        while (current != null)
+        {
+            Console.Write(current.Data + " -> ");
+            current = current.Next;
+        }
+
+        Console.WriteLine("null");
+    }
+    public void SearchDestination(string location)
+    {
+        Node current = head;
+
+        while (current != null)
+        {
+            if (current.Data == location)
+            {
+                Console.WriteLine("Destination found!");
+                return;
+            }
+
+            current = current.Next;
+        }
+
+        Console.WriteLine("Destination not found.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        DeliveryRoute route = new DeliveryRoute();
+
+        route.AddLocation("Stop A");
+        route.AddLocation("Stop B");
+        route.AddLocation("Stop C");
+
+        Console.WriteLine("Delivery Route:");
+        route.DisplayRoute();
+
+        route.SearchDestination("Stop B");
+
+        route.RemoveLocation("Stop B");
+
+        Console.WriteLine("\nUpdated Route:");
+        route.DisplayRoute();
+    }
+}
+
+windows app code
+Library Book Management System
+using System;
+using System.Collections.Generic;
+
+namespace LBBMS
+{
+    public partial class Form1 : Form
+    {
+    
+        List<string> books = new List<string>()
+        {
+            "Harry Potter",
+            "The Little Prince",
+            "Atomic Habits"
+        };
+        List<string> borrowedBooks = new List<string>();
+        public Form1()
+        {
+            InitializeComponent();
+            cmbBooks.Items.Add("Harry Potter");
+            cmbBooks.Items.Add("The Little Prince");
+            cmbBooks.Items.Add("Atomic Habits");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lstResults.Items.Clear();
+            lstResults.Items.Add("Available Books:");
+            foreach (string book in books)
+            {
+                lstResults.Items.Add(book);
+            }
+        }
+
+        private void btnBorrow_Click(object sender, EventArgs e)
+        {
+            string book = cmbBooks.Text;
+
+            if (books.Contains(book))
+            {
+                books.Remove(book);
+                borrowedBooks.Add(book);
+                lstResults.Items.Add(book + " borrowed successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Book not available!");
+            }
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            string book = cmbBooks.Text;
+            if (borrowedBooks.Contains(book))
+            {
+                borrowedBooks.Remove(book);
+                books.Add(book);
+                lstResults.Items.Add(book + " returned successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Book was not borrowed!");
+            }
+        }
+    }
+
+}
+
+Shopping Cart
+using System;
+using System.Collections;
+namespace WinFormsApp2
+{
+    public partial class Form1 : Form
+    {
+        ArrayList products = new ArrayList();
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (txtProduct.Text != "")
+            {
+                products.Add(txtProduct.Text);
+                MessageBox.Show("Product added successfully!");
+                txtProduct.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a product!");
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (products.Contains(txtProduct.Text))
+            {
+                products.Remove(txtProduct.Text);
+                MessageBox.Show("Product removed successfully!");
+                txtProduct.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Product not found!");
+            }
+        }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            lstResults.Items.Clear();
+            lstResults.Items.Add("Shopping Cart:");
+
+            if (products.Count == 0)
+            {
+                lstResults.Items.Add("Cart is empty.");
+            }
+            else
+            {
+                foreach (string product in products)
+                {
+                    lstResults.Items.Add(product);
+                }
+
+            }
+
+            }
+        }
+}
+
+Patient Waiting List System
+using System;
+namespace Patient_Waiting
+{
+    public partial class Form1 : Form
+    {
+        Node head = null;
+        Node tail = null;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string patient = txtPatient.Text;
+
+            if (patient != "")
+            {
+                Node newNode = new Node(patient);
+
+                if (head == null)
+                {
+                    head = newNode;
+                    tail = newNode;
+                }
+                else
+                {
+                    tail.Next = newNode;
+                    tail = newNode;
+                }
+
+                MessageBox.Show("Patient added successfully!");
+
+                txtPatient.Clear();
+                DisplayPatients();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a patient name!");
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string patient = txtPatient.Text;
+
+            Node current = head;
+
+            while (current != null)
+            {
+                if (current.Data.Equals(
+                    patient, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Patient found!");
+                    return;
+                }
+
+                current = current.Next;
+            }
+
+            MessageBox.Show("Patient not found!");
+        }
+        
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            DisplayPatients();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (head != null)
+            {
+                string patient = head.Data;
+
+                head = head.Next;
+
+                if (head == null)
+                {
+                    tail = null;
+                }
+
+                MessageBox.Show(patient + " has been served!");
+
+                DisplayPatients();
+            }
+            else
+            {
+                MessageBox.Show("No patients waiting!");
+            }
+        }
+        private void DisplayPatients()
+        {
+            listBox1.Items.Clear();
+
+            Node current = head;
+
+            while (current != null)
+            {
+                listBox1.Items.Add(current.Data);
+
+                current = current.Next;
+            }
+        
+        }
+    }
+
+}
+class Node
+{
+    public string Data;
+    public Node Next;
+
+    public Node(string data)
+    {
+        Data = data;
+        Next = null;
+    }
+}
+
+Delivery Route Management
+using System;
+namespace Delivery_Route
+{
+    public partial class Form1 : Form
+    {
+        Node head = null;
+        public Form1()
+        {
+            InitializeComponent();
+            head = new Node("Warehouse");
+            AddLocation("Stop A");
+            AddLocation("Stop B");
+            AddLocation("Stop C");
+            DisplayRoute();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string location = txtLocation.Text;
+
+            if (location != "")
+            {
+                AddLocation(location);
+                MessageBox.Show("Delivery location added!");
+                txtLocation.Clear();
+                DisplayRoute();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a location!");
+            }
+        }
+
+            private void AddLocation(string location)
+        {
+            Node newNode = new Node(location);
+
+            Node current = head;
+
+            while (current.Next != null)
+            {
+                current = current.Next;
+            }
+
+            current.Next = newNode;
+
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            string location = txtLocation.Text;
+
+            if (location == "")
+            {
+                MessageBox.Show("Please enter a location!");
+                return;
+            }
+            Node current = head;
+            while (current.Next != null)
+            {
+                if (current.Next.Data.Equals(
+                    location, StringComparison.OrdinalIgnoreCase))
+                {
+                    current.Next = current.Next.Next;
+
+                    MessageBox.Show("Delivery removed!");
+
+                    txtLocation.Clear();
+                    DisplayRoute();
+                    return;
+                }
+                current = current.Next;
+            }
+            MessageBox.Show("Location not found!");
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string location = txtLocation.Text;
+
+            Node current = head;
+
+            while (current != null)
+            {
+                if (current.Data.Equals(
+                    location, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Destination found!");
+                    return;
+                }
+
+                current = current.Next;
+            }
+
+            MessageBox.Show("Destination not found!");
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            DisplayRoute();
+        }
+
+        private void DisplayRoute()
+        {
+            listBox1.Items.Clear();
+
+            Node current = head;
+
+            while (current != null)
+            {
+                listBox1.Items.Add(current.Data);
+
+                current = current.Next;
+            }
+        }
+    }
+}
+class Node
+{
+    public string Data;
+    public Node Next;
+
+    public Node(string data)
+    {
+        Data = data;
+        Next = null;
+    }
+}
+
